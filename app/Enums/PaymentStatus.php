@@ -4,7 +4,6 @@ namespace App\Enums;
 
 use App\Contracts\EnumGettersContract;
 use App\Traits\EnumWithGetters;
-use Stringable;
 
 enum PaymentStatus: int implements EnumGettersContract
 {
