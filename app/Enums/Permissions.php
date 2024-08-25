@@ -23,7 +23,7 @@ enum Permissions: string implements EnumHelpersContract
     case USER_CONFIRM = 'user.confirm';
 
     case PRODUCT_VIEW = 'product.view';
-    case PRODUCT_ADD = 'product.add';
+    case PRODUCT_CREATE = 'product.create';
     case PRODUCT_DELETE = 'product.delete';
     case PRODUCT_EDIT = 'product.edit';
 
@@ -31,10 +31,13 @@ enum Permissions: string implements EnumHelpersContract
     case WALLET_VIEW = 'wallet.view';
 
     case ORDER_CANCEL = 'order.cancel';
+    case ORDER_DELETE = 'order.delete';
     case ORDER_VIEW = 'order.view';
+    case ORDER_EDIT = 'order.edit';
     case ORDER_CREATE = 'order.create';
 
     case ADDRESS_VIEW = 'address.view';
+    case ADDRESS_EDIT = 'address.edit';
     case ADDRESS_CREATE = 'address.create';
     case ADDRESS_DELETE = 'address.delete';
 
@@ -49,6 +52,7 @@ enum Permissions: string implements EnumHelpersContract
 
     case ORDER_SELF_EDIT = 'order.self_edit';
     case ORDER_SELF_DELETE = 'order.self_delete';
+    case ORDER_SELF_CANCEL = 'order.self_cancel';
 
     case ADDRESS_SELF_EDIT = 'address.self_edit';
     case ADDRESS_SELF_DELETE = 'address.self_delete';
@@ -95,7 +99,7 @@ enum Permissions: string implements EnumHelpersContract
         $user_permissions = self::costumerPermissions();
 
         return array_merge($user_permissions, [
-            self::PRODUCT_ADD,
+            self::PRODUCT_CREATE,
             self::PRODUCT_SELF_EDIT,
             self::PRODUCT_SELF_DELETE,
         ]);
