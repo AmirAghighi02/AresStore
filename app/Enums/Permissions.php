@@ -57,6 +57,9 @@ enum Permissions: string implements EnumHelpersContract
     case ADDRESS_SELF_EDIT = 'address.self_edit';
     case ADDRESS_SELF_DELETE = 'address.self_delete';
 
+    /**
+     * @return array<int, self>
+     */
     public static function adminPermissions(): array
     {
         return [
@@ -68,6 +71,9 @@ enum Permissions: string implements EnumHelpersContract
         ];
     }
 
+    /**
+     * @return array<int, self>
+     */
     public static function superAdminPermissions(): array
     {
         $admin_permissions = self::adminPermissions();
@@ -77,6 +83,9 @@ enum Permissions: string implements EnumHelpersContract
         ]);
     }
 
+    /**
+     * @return array<int, self>
+     */
     public static function costumerPermissions(): array
     {
         return [
@@ -94,6 +103,9 @@ enum Permissions: string implements EnumHelpersContract
         ];
     }
 
+    /**
+     * @return array<int, self>
+     */
     public static function sellerPermissions(): array
     {
         $user_permissions = self::costumerPermissions();

@@ -2,9 +2,12 @@ includes:
     - vendor/larastan/larastan/extension.neon
 
 parameters:
-
+    ignoreErrors:
+        - '#Class [a-zA-Z0-9\\_]+ uses generic trait [a-zA-Z0-9\\_]+ but does not specify its types:#'
+        - '#Parameter [a-zA-Z0-9\\_\s\#]+ [a-zA-Z0-9\\_\s\$]+ of method [a-zA-Z0-9\\_\(\):]+ expects [a-zA-Z0-9\\_<>,\s]+ mixed[a-zA-Z0-9\\_<>,\s\.]+#'
+        - '#Parameter [a-zA-Z0-9\\_\s\#]+ [a-zA-Z0-9\\_\s\$]+ of static method [a-zA-Z0-9\\_\(\):]+ expects [a-zA-Z0-9\\_<>,\s]+ mixed[a-zA-Z0-9\\_<>,\s\.]+#'
     paths:
         - app/
 
     # Level 9 is the highest level
-    level: 5
+    level: 9
