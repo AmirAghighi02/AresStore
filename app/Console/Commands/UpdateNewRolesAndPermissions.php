@@ -31,6 +31,7 @@ class UpdateNewRolesAndPermissions extends Command
     {
         $this->rolesUpdate();
         $this->permissionsUpdate();
+        $this->call('db:seed', ['--class' => 'AssignRolePermissionsToUsers']);
     }
 
     public function rolesUpdate(): void

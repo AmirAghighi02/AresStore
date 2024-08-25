@@ -14,6 +14,7 @@ enum Permissions: string implements EnumHelpersContract
     case PRODUCT_MANAGE = 'product.*';
     case WALLET_MANAGE = 'wallet.*';
     case ORDER_MANAGE = 'order.*';
+    case ADDRESS_MANAGE = 'address.*';
 
     case USER_VIEW = 'user.view';
     case USER_ADD = 'user.add';
@@ -33,6 +34,10 @@ enum Permissions: string implements EnumHelpersContract
     case ORDER_VIEW = 'order.view';
     case ORDER_CREATE = 'order.create';
 
+    case ADDRESS_VIEW = 'address.view';
+    case ADDRESS_CREATE = 'address.create';
+    case ADDRESS_DELETE = 'address.delete';
+
     case USER_SELF_EDIT = 'user.self_edit';
     case USER_SELF_DELETE = 'user.self_delete';
 
@@ -45,6 +50,9 @@ enum Permissions: string implements EnumHelpersContract
     case ORDER_SELF_EDIT = 'order.self_edit';
     case ORDER_SELF_DELETE = 'order.self_delete';
 
+    case ADDRESS_SELF_EDIT = 'address.self_edit';
+    case ADDRESS_SELF_DELETE = 'address.self_delete';
+
     public static function adminPermissions(): array
     {
         return [
@@ -52,6 +60,7 @@ enum Permissions: string implements EnumHelpersContract
             self::PRODUCT_MANAGE,
             self::WALLET_MANAGE,
             self::ORDER_MANAGE,
+            self::ADDRESS_MANAGE,
         ];
     }
 
@@ -75,6 +84,9 @@ enum Permissions: string implements EnumHelpersContract
             self::ORDER_SELF_DELETE,
             self::USER_SELF_EDIT,
             self::USER_SELF_DELETE,
+            self::ADDRESS_SELF_DELETE,
+            self::ADDRESS_SELF_EDIT,
+            self::ADDRESS_CREATE,
         ];
     }
 
