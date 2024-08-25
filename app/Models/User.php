@@ -68,26 +68,41 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * @return HasMany<Address>
+     */
     public function addresses(): HasMany
     {
         return $this->hasMany(Address::class);
     }
 
+    /**
+     * @return HasMany<Product>
+     */
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
     }
 
+    /**
+     * @return HasMany<Order>
+     */
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
     }
 
+    /**
+     * @return HasOne<Wallet>
+     */
     public function wallet(): HasOne
     {
         return $this->hasOne(Wallet::class);
     }
 
+    /**
+     * @return HasMany<Payment>
+     */
     public function payments(): HasMany
     {
         return $this->hasMany(Payment::class);

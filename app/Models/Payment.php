@@ -11,11 +11,17 @@ class Payment extends Model
 {
     use HasFactory;
 
+    /**
+     * @return BelongsTo<User, Payment>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @return HasOne<Order>
+     */
     public function order(): HasOne
     {
         return $this->hasOne(Order::class);

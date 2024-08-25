@@ -10,6 +10,9 @@ class Wallet extends Model
 {
     use HasFactory;
 
+    /**
+     * @return BelongsTo<User, Wallet>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

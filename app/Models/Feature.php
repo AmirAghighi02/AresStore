@@ -10,6 +10,9 @@ class Feature extends Model
 {
     use HasFactory;
 
+    /**
+     * @return HasMany<FeatureValue>
+     */
     public function featureValues(): HasMany
     {
         return $this->hasMany(FeatureValue::class);
