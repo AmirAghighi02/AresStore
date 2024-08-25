@@ -14,3 +14,10 @@ Artisan::command('pint', function () {
 
     return 0;
 });
+
+Artisan::command('stan', function () {
+    $stan = Process::timeout(2000)->run('./vendor/bin/phpstan analyse');
+    $this->info($stan->output());
+
+    return 0;
+});

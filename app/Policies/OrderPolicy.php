@@ -66,7 +66,7 @@ class OrderPolicy
             return true;
         }
 
-        return $user->hasPermissionTo(Permissions::ORDER_CANCEL)
+        return $user->hasPermissionTo(Permissions::ORDER_SELF_CANCEL)
             && $order->user_id === $user->id;
     }
 }
