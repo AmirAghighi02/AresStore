@@ -11,6 +11,8 @@ class FeatureValue extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     /**
      * @return BelongsTo<Feature, FeatureValue>
      */

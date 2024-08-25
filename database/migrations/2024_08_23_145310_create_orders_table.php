@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedInteger('tax');
             $table->unsignedInteger('shipping_cost');
             $table->unsignedInteger('total_price');
-            $table->enum('status', OrderStatus::values())->default(OrderStatus::PENDING->value);
+            $table->tinyInteger('status')->default(OrderStatus::PENDING->value);
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDekete();
             $table->foreignIdFor(Payment::class)->constrained()->cascadeOnDekete();
             $table->foreignIdFor(Address::class)->constrained()->cascadeOnDekete();

@@ -16,5 +16,7 @@ class UserSeeder extends Seeder
         User::factory()->create(['name' => 'super_admin']);
         User::factory()->create(['name' => 'seller']);
         User::factory()->create(['name' => 'costumer']);
+
+        User::factory(DatabaseSeeder::$count)->create();
     }
 }

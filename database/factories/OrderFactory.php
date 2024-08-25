@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\OrderStatus;
-use App\Models\Address;
+use App\Enums\PaymentStatus;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\User;
@@ -22,14 +22,20 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
+        $payment_id = Payment::doesntHave('order')
+            ->where('status', PaymentStatus::SUCCESS->value)
+            ->inRandomOrder()
+            ->first()->id ?? 1;
+        $user = User::has('addresses')->inRandomOrder()->first();
+
         return [
             'tax' => $this->faker->randomNumber(4, true),
             'shipping_cost' => $this->faker->randomNumber(5, true),
             'total_price' => $this->faker->randomNumber(7, true),
             'status' => Arr::random(OrderStatus::values()),
-            'payment_id' => Payment::inRandomOrder()->first()->id,
-            'user_id' => User::inRandomOrder()->first()->id,
-            'address' => Address::inRandomOrder()->first()->id,
+            'payment_id' => $payment_id,
+            'user_id' => $user->id,
+            'address_id' => $user->addresses->first->id,
         ];
     }
 }

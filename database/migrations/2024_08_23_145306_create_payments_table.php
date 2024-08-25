@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('price');
-            $table->enum('status', PaymentStatus::values())->default(PaymentStatus::PENDING->value);
+            $table->tinyInteger('status')->default(PaymentStatus::PENDING->value);
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDekete();
             $table->timestamps();
         });
