@@ -2,9 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Enums\Genders;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
@@ -29,6 +31,9 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'phone' => fake()->phoneNumber(),
+            'gender' => Arr::random(Genders::cases()),
+            'birth_day' => fake()->date(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'two_factor_secret' => null,
