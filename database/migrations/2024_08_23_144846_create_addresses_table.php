@@ -19,7 +19,7 @@ return new class extends Migration
             $table->smallInteger('unit')->nullable();
             $table->integer('latitude')->nullable();
             $table->integer('longitude')->nullable();
-            $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDekete();
             $table->timestamps();
         });
     }

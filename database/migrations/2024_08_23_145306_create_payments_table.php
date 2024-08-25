@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('price');
             $table->enum('status', PaymentStatus::values())->default(PaymentStatus::PENDING->value);
-            $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDekete();
             $table->timestamps();
         });
     }

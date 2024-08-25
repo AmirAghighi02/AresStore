@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('categories_models', function (Blueprint $table) {
-            $table->foreignIdFor(Category::class)->constrained();
+            $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->morphs('model');
         });
     }

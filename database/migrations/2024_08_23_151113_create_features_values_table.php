@@ -12,10 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('features_values', function (Blueprint $table) {
+        Schema::create('feature_values', function (Blueprint $table) {
             $table->id();
             $table->string('value');
-            $table->foreignIdFor(Feature::class)->constrained();
+            $table->foreignIdFor(Feature::class)->constrained()->cascadeOnDelete();
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('features_values');
+        Schema::dropIfExists('feature_values');
     }
 };

@@ -14,8 +14,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders_products', function (Blueprint $table) {
-            $table->foreignIdFor(Order::class)->constrained();
-            $table->foreignIdFor(Product::class)->constrained();
+            $table->foreignIdFor(Order::class)->constrained()->cascadeOnDekete();
+            $table->foreignIdFor(Product::class)->constrained()->cascadeOnDekete();
             $table->unsignedInteger('count');
             $table->unsignedInteger('final_cost');
         });
