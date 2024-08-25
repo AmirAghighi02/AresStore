@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
+ * @extends Factory<Product>
  */
 class ProductFactory extends Factory
 {
@@ -17,7 +19,10 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->city(),
+            'price' => $this->faker->numberBetween(10000, 900000),
+            'quantity' => $this->faker->numberBetween(0, 10),
+            'user_id' => User::inRandomOrder()->first()->id,
         ];
     }
 }

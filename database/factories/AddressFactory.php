@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Address;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Address>
+ * @extends Factory<Address>
  */
 class AddressFactory extends Factory
 {
@@ -17,7 +19,12 @@ class AddressFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'address' => $this->faker->address(),
+            'user_id' => User::inRandomOrder()->first()->id,
+            'number' => $this->faker->numberBetween(1, 200),
+            'unit' => $this->faker->numberBetween(1, 50),
+            'latitude' => $this->faker->latitude(),
+            'longitude' => $this->faker->longitude(),
         ];
     }
 }

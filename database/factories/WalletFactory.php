@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Wallet>
+ * @extends Factory<Wallet>
  */
 class WalletFactory extends Factory
 {
@@ -17,7 +19,7 @@ class WalletFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::doesntHave('wallet')->inRandomOrder()->first()->id,
         ];
     }
 }
