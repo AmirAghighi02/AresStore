@@ -2,7 +2,9 @@
 
 namespace App\Traits;
 
-trait EnumWithGetters
+use Illuminate\Support\Str;
+
+trait HasEnumHelpers
 {
     public static function values(): array
     {
@@ -12,5 +14,10 @@ trait EnumWithGetters
     public static function names(): array
     {
         return array_column(self::cases(), 'name');
+    }
+
+    public function label(): string
+    {
+        return Str::ucfirst($this->name);
     }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Enums;
 
-use App\Contracts\EnumGettersContract;
-use App\Traits\EnumWithGetters;
+use App\Contracts\EnumHelpersContract;
+use App\Traits\HasEnumHelpers;
 
-enum OrderStatus: int implements EnumGettersContract
+enum OrderStatus: int implements EnumHelpersContract
 {
-    use EnumWithGetters;
+    use HasEnumHelpers;
     case PENDING = 0;
     case SENT = 1;
     case SHIPPED = 2;

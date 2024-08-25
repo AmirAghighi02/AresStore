@@ -2,12 +2,12 @@
 
 namespace App\Enums;
 
-use App\Contracts\EnumGettersContract;
-use App\Traits\EnumWithGetters;
+use App\Contracts\EnumHelpersContract;
+use App\Traits\HasEnumHelpers;
 
-enum PaymentStatus: int implements EnumGettersContract
+enum PaymentStatus: int implements EnumHelpersContract
 {
-    use EnumWithGetters;
+    use HasEnumHelpers;
 
     case FAILED = 0;
     case CANCELLED = 1;
