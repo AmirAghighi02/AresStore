@@ -50,6 +50,11 @@ class ProductPolicy
         return $product->user_id === $user->id;
     }
 
+    public function viewAnySelf(User $user): bool
+    {
+        return $user->hasPermissionTo(Permissions::PRODUCT_SELF_VIEW_ANY);
+    }
+
     public function viewAny(User $user): bool
     {
         return $user->hasPermissionTo(Permissions::PRODUCT_VIEW);

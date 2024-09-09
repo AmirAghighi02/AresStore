@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Auth;
+namespace App\Http\Resources\Product;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RegisterResource extends JsonResource
+class ProductResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +17,8 @@ class RegisterResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'phone' => $this->phone,
-            'email' => $this->email,
-            'register_date' => $this->created_at,
+            'price' => $this->price,
+            'quantity' => $this->quantity,
         ];
     }
 }

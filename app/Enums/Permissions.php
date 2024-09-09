@@ -46,6 +46,7 @@ enum Permissions: string implements EnumHelpersContract
 
     case PRODUCT_SELF_EDIT = 'product.self_edit';
     case PRODUCT_SELF_DELETE = 'product.self_delete';
+    case PRODUCT_SELF_VIEW_ANY = 'product.self_view_any';
 
     case WALLET_SELF_WITHDRAW = 'wallet.self_withdraw';
     case WALLET_SELF_CHARGE = 'wallet.self_charge';
@@ -114,6 +115,7 @@ enum Permissions: string implements EnumHelpersContract
             self::PRODUCT_CREATE,
             self::PRODUCT_SELF_EDIT,
             self::PRODUCT_SELF_DELETE,
+            self::PRODUCT_SELF_VIEW_ANY,
         ]);
     }
 }

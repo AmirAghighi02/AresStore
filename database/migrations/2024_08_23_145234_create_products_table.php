@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedInteger('price');
-            $table->unsignedInteger('quantity');
+            $table->unsignedInteger('quantity')->default(0);
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDekete();
             $table->timestamps();
         });
