@@ -12,6 +12,8 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     protected $casts = [
         'status' => OrderStatus::class,
     ];
@@ -45,6 +47,16 @@ class Order extends Model
      */
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class)->withPivot(['count', 'final_cost']);
+        return $this->belongsToMany(Product::class, 'orders_products')->withPivot(['count', 'final_cost']);
+    }
+
+    public static function calculateTax(): int
+    {
+        return 100;
+    }
+
+    public static function calculateShippingCost(): int
+    {
+        return 100;
     }
 }

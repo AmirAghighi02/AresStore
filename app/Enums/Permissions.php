@@ -49,6 +49,8 @@ enum Permissions: string implements EnumHelpersContract
     case CART_ADD_ITEM_SELF = 'cart.add_item_self';
     case CART_DELETE_ITEM = 'cart.delete_item';
     case CART_DELETE_ITEM_SELF = 'cart.delete_item_self';
+    case CART_PAY_SELF = 'cart.pay_self';
+    case CART_PAY = 'cart.pay';
 
     case USER_SELF_EDIT = 'user.self_edit';
     case USER_SELF_DELETE = 'user.self_delete';
@@ -78,7 +80,6 @@ enum Permissions: string implements EnumHelpersContract
             self::WALLET_MANAGE,
             self::ORDER_MANAGE,
             self::ADDRESS_MANAGE,
-            self::CART_MANAGE,
         ];
     }
 
@@ -91,6 +92,7 @@ enum Permissions: string implements EnumHelpersContract
 
         return array_merge($admin_permissions, [
             self::ACCESS_MANAGE,
+            self::CART_MANAGE,
         ]);
     }
 
@@ -114,6 +116,7 @@ enum Permissions: string implements EnumHelpersContract
             self::CART_VIEW_SELF,
             self::CART_ADD_ITEM_SELF,
             self::CART_DELETE_ITEM_SELF,
+            self::CART_PAY_SELF,
         ];
     }
 

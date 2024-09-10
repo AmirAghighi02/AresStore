@@ -14,4 +14,7 @@ Route::controller(CartController::class)
         Route::delete('/remove', 'destroy')
             ->permission(Permissions::CART_DELETE_ITEM_SELF->value)
             ->name('cart.destroy');
+        Route::post('/pay', 'pay')
+            ->permission(Permissions::CART_PAY_SELF->value)
+            ->name('cart.pay');
     });

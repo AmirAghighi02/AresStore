@@ -12,6 +12,8 @@ class Payment extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     protected $casts = [
         'status' => PaymentStatus::class,
     ];
