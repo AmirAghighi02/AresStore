@@ -14,6 +14,7 @@ class ResponseConverter
                 'action' => __($response->getAction()),
                 'message' => __($response->getMessage()),
                 'data' => $response->getData(),
+                'meta' => $response->getMeta(),
                 'api_version' => $response->getApiVersion(),
             ],
             status: $response->getStatusCode()

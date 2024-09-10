@@ -16,4 +16,6 @@ interface ConvertsToJsonResponse
     public function getData(): array|Collection|JsonResource;
 
     public function getAction(): string;
+
+    public function getMeta(): ?array;
 }

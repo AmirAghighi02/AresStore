@@ -19,6 +19,8 @@ class ResponseUtil implements ConvertsToJsonResponse
 
     private string $action = '';
 
+    private ?array $meta = null;
+
     public static function builder(): static
     {
         return new static;
@@ -85,6 +87,18 @@ class ResponseUtil implements ConvertsToJsonResponse
     public function setAction(string $action): static
     {
         $this->action = $action;
+
+        return $this;
+    }
+
+    public function getMeta(): ?array
+    {
+        return $this->meta;
+    }
+
+    public function setMeta(array $meta): static
+    {
+        $this->meta = $meta;
 
         return $this;
     }
