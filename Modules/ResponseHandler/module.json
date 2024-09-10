@@ -1,0 +1,11 @@
+{
+    "name": "ResponseHandler",
+    "alias": "responsehandler",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ResponseHandler\\Providers\\ResponseHandlerServiceProvider"
+    ],
+    "files": []
+}
