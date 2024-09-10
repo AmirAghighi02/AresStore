@@ -15,6 +15,7 @@ enum Permissions: string implements EnumHelpersContract
     case WALLET_MANAGE = 'wallet.*';
     case ORDER_MANAGE = 'order.*';
     case ADDRESS_MANAGE = 'address.*';
+    case CART_MANAGE = 'cart.*';
 
     case USER_VIEW = 'user.view';
     case USER_ADD = 'user.add';
@@ -40,6 +41,14 @@ enum Permissions: string implements EnumHelpersContract
     case ADDRESS_EDIT = 'address.edit';
     case ADDRESS_CREATE = 'address.create';
     case ADDRESS_DELETE = 'address.delete';
+
+    case CART_VIEW = 'cart.view';
+    case CART_VIEW_SELF = 'cart.view_self';
+    case CART_DELETE = 'cart.delete';
+    case CART_ADD_ITEM = 'cart.add_item';
+    case CART_ADD_ITEM_SELF = 'cart.add_item_self';
+    case CART_DELETE_ITEM = 'cart.delete_item';
+    case CART_DELETE_ITEM_SELF = 'cart.delete_item_self';
 
     case USER_SELF_EDIT = 'user.self_edit';
     case USER_SELF_DELETE = 'user.self_delete';
@@ -69,6 +78,7 @@ enum Permissions: string implements EnumHelpersContract
             self::WALLET_MANAGE,
             self::ORDER_MANAGE,
             self::ADDRESS_MANAGE,
+            self::CART_MANAGE,
         ];
     }
 
@@ -101,6 +111,9 @@ enum Permissions: string implements EnumHelpersContract
             self::ADDRESS_SELF_DELETE,
             self::ADDRESS_SELF_EDIT,
             self::ADDRESS_CREATE,
+            self::CART_VIEW_SELF,
+            self::CART_ADD_ITEM_SELF,
+            self::CART_DELETE_ITEM_SELF,
         ];
     }
 
