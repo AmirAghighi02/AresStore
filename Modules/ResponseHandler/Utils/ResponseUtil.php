@@ -2,7 +2,6 @@
 
 namespace Modules\ResponseHandler\Utils;
 
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
 use Modules\ResponseHandler\Contracts\ConvertsToJsonResponse;
@@ -12,7 +11,7 @@ class ResponseUtil implements ConvertsToJsonResponse
 {
     private int $statusCode = Response::HTTP_OK;
 
-    private array|Collection|JsonResource|AnonymousResourceCollection $data = [];
+    private array|Collection|JsonResource $data = [];
 
     private string $message;
 
@@ -35,6 +34,13 @@ class ResponseUtil implements ConvertsToJsonResponse
         return $this->statusCode;
     }
 
+    public function setStatusCode(int $statusCode): static
+    {
+        $this->statusCode = $statusCode;
+
+        return $this;
+    }
+
     public function getApiVersion(): string
     {
         return $this->apiVersion;
@@ -45,7 +51,7 @@ class ResponseUtil implements ConvertsToJsonResponse
         return $this->message;
     }
 
-    public function getData(): array|Collection|JsonResource|AnonymousResourceCollection
+    public function getData(): array|Collection|JsonResource
     {
         return $this->data;
     }
@@ -57,7 +63,7 @@ class ResponseUtil implements ConvertsToJsonResponse
         return $this;
     }
 
-    public function setData(Collection|array $data): static
+    public function setData(array|Collection|JsonResource $data): static
     {
         $this->data = $data;
 

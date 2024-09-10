@@ -10,6 +10,9 @@ use App\Http\Resources\Auth\RegisterResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Modules\ResponseHandler\Services\ResponseConverter;
+use Modules\ResponseHandler\Utils\ResponseUtil;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
@@ -17,17 +20,19 @@ class AuthController extends Controller
     {
         $validated = $request->validated();
         if (Auth::attempt($validated)) {
-            //            $token = Auth::user()->createToken('auth_token')->plainTextToken;
-
-            return response()->json([
-                'message' => 'Logged in successfully',
-                //                'data' => ['token' => $token],
-            ]);
+            return ResponseConverter::convert(
+                ResponseUtil::builder()
+                    ->setMessage('auth.login.success')
+                    ->setAction(__FUNCTION__)
+            );
         }
 
-        return response()->json([
-            'message' => 'Invalid credentials',
-        ], 403);
+        return ResponseConverter::convert(
+            ResponseUtil::builder()
+                ->setMessage('auth.login.fail')
+                ->setAction(__FUNCTION__)
+                ->setStatusCode(Response::HTTP_FORBIDDEN)
+        );
     }
 
     public function register(RegisterRequest $request): JsonResponse
@@ -35,17 +40,24 @@ class AuthController extends Controller
         $validated = $request->except('password_confirmation');
         $user = User::create($validated)->assignRole(Roles::COSTUMER);
 
-        return response()->json(new RegisterResource($user), 201);
+        return ResponseConverter::convert(
+            ResponseUtil::builder()
+                ->setMessage('auth.register.success')
+                ->setAction(__FUNCTION__)
+                ->setData(new RegisterResource($user))
+                ->setStatusCode(Response::HTTP_CREATED)
+        );
     }
 
     public function logout(): JsonResponse
     {
-        //        Auth::user()->currentAccessToken()->delete();
         session()->invalidate();
 
-        return response()->json([
-            'message' => 'Logged out successfully',
-        ]);
+        return ResponseConverter::convert(
+            ResponseUtil::builder()
+                ->setMessage('auth.logout.success')
+                ->setAction(__FUNCTION__)
+        );
     }
 
     public function passwordReset(PasswordResetRequest $request) {}

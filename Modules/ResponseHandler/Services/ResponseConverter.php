@@ -7,18 +7,16 @@ use Modules\ResponseHandler\Contracts\ConvertsToJsonResponse;
 
 class ResponseConverter
 {
-    public function __construct(public ConvertsToJsonResponse $response) {}
-
-    public function response(): JsonResponse|array
+    public static function convert(ConvertsToJsonResponse $response): JsonResponse|array
     {
         return response()->json(
             data: [
-                'action' => __($this->response->getAction()),
-                'message' => __($this->response->getMessage()),
-                'data' => $this->response->getData(),
-                'api_version' => $this->response->getApiVersion(),
+                'action' => __($response->getAction()),
+                'message' => __($response->getMessage()),
+                'data' => $response->getData(),
+                'api_version' => $response->getApiVersion(),
             ],
-            status: $this->response->getStatusCode()
+            status: $response->getStatusCode()
         );
     }
 }

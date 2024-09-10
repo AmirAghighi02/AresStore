@@ -2,7 +2,6 @@
 
 namespace Modules\ResponseHandler\Contracts;
 
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
 
@@ -14,7 +13,7 @@ interface ConvertsToJsonResponse
 
     public function getMessage(): string;
 
-    public function getData(): array|Collection|JsonResource|AnonymousResourceCollection;
+    public function getData(): array|Collection|JsonResource;
 
     public function getAction(): string;
 }
