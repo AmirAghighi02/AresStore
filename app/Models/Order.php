@@ -52,11 +52,11 @@ class Order extends Model
 
     public static function calculateTax(): int
     {
-        return 100;
+        return 100; //todo calculate tax
     }
 
     public static function calculateShippingCost(): int
     {
-        return 100;
+        return 100; //todo calculate shipping cost
     }
 }
