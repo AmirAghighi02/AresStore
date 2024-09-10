@@ -1,10 +1,15 @@
 <?php
 
+use App\Exceptions\ApiBaseException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Middleware\SubstituteBindings;
+use Modules\ResponseHandler\Services\ResponseConverter;
+use Modules\ResponseHandler\Utils\ResponseUtil;
+use Symfony\Component\HttpFoundation\Response;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -31,5 +36,14 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->render(function (ApiBaseException $exception, Request $request) {
+            if ($request->wantsJson()) {
+                return ResponseConverter::convert(
+                    ResponseUtil::builder()->setMessage($exception->getMessage())
+                        ->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR)
+                        ->setAction($exception->getAction())
+                        ->setData($exception->getBody())
+                );
+            }
+        });
     })->create();

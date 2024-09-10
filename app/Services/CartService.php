@@ -34,11 +34,11 @@ class CartService
 
     public function addToCart(int $productId, int $quantity): void
     {
-        if ($this->isProductAvailable($productId, $quantity) === false) {
-            throw new UserCartException('Product is not available');
+        $productCount = $this->getProductCount($productId);
+        if ($this->isProductAvailable($productId, $quantity + $productCount) === false) {
+            throw (new UserCartException('Product is not available'))->setAction(__FUNCTION__);
         }
 
-        $productCount = $this->getProductCount($productId);
         $productCount += $quantity;
         $cart = $this->getCart();
         $cart[$productId] = $productCount;
@@ -100,7 +100,9 @@ class CartService
 
             if (! empty($unavailable_product_ids)) {
                 throw (new UserCartException('some products are not available.'))
-                    ->setMetaData($unavailable_product_ids);
+                    ->setBody($unavailable_product_ids)
+                    ->setAction(__FUNCTION__);
+
             }
 
             $payment = $this->createOrderAndProduct($address_id, $products);
@@ -116,14 +118,14 @@ class CartService
     private function getUnavailableProducts(Collection $products): array
     {
         if ($products->isEmpty()) {
-            throw new UserCartException('Empty cart');
+            throw (new UserCartException('Empty cart'))->setAction(__FUNCTION__);
         }
 
         $cart = $this->getCart();
 
         $unavailable_products = [];
         foreach ($products as $productData) {
-            if ($productData['count'] < $cart[$productData['product_id']]) {
+            if ($productData['quantity'] < $cart[$productData['product_id']]) {
                 $unavailable_products[] = $productData['product_id'];
             }
         }
@@ -138,7 +140,7 @@ class CartService
 
     public function getTotalCartPrice(Collection $products): int
     {
-        return $products->map(fn ($productData) => $productData['final_cost'] * $productData['count'])->sum();
+        return $products->map(fn ($productData) => $productData['final_cost'] * $productData['count_in_cart'])->sum();
     }
 
     public function getProductModelsInCartTransformed(): Collection
@@ -149,7 +151,8 @@ class CartService
         return Product::whereIn('id', $product_ids)->get()->map(function (Product $product) use ($cart) {
             return
                 [
-                    'count' => $cart[$product->id],
+                    'count_in_cart' => $cart[$product->id],
+                    'quantity' => $product->quantity,
                     'final_cost' => $product->price,
                     'product_id' => $product->id,
                 ];
@@ -177,7 +180,10 @@ class CartService
         $transformedProducts = [];
         foreach ($products->toArray() as $productData) {
             $product_id = Arr::pull($productData, 'product_id');
-            $transformedProducts[$product_id] = $productData;
+            $transformedProducts[$product_id] = [
+                'count' => $productData['count_in_cart'],
+                'final_cost' => $productData['final_cost'],
+            ];
         }
 
         $order->products()->sync($transformedProducts);

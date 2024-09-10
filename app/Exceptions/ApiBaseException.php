@@ -11,6 +11,8 @@ abstract class ApiBaseException extends Exception
 
     protected string|array|Collection $meta = [];
 
+    protected string $action = '';
+
     public function setBody(array|Collection $body): static
     {
         $this->body = $body;
@@ -21,6 +23,18 @@ abstract class ApiBaseException extends Exception
     public function getBody(): array|Collection
     {
         return $this->body;
+    }
+
+    public function setAction(string $action): static
+    {
+        $this->action = $action;
+
+        return $this;
+    }
+
+    public function getAction(): string
+    {
+        return $this->action;
     }
 
     abstract public function getMetaData(): string|array|Collection;
