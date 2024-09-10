@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\ResponseHandler\Http\Controllers\ResponseHandlerController;
+use Modules\ResponseHandler\App\Http\Controllers\ResponseHandlerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,6 @@ use Modules\ResponseHandler\Http\Controllers\ResponseHandlerController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('responsehandler', ResponseHandlerController::class)->names('responsehandler');
-});
+//Route::group([], function () {
+//    Route::resource('responsehandler', ResponseHandlerController::class)->names('responsehandler');
+//});

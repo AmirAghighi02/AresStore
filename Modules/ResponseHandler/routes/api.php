@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\ResponseHandler\Http\Controllers\ResponseHandlerController;
+use Modules\ResponseHandler\App\Http\Controllers\ResponseHandlerController;
 
 /*
  *--------------------------------------------------------------------------
@@ -14,6 +14,6 @@ use Modules\ResponseHandler\Http\Controllers\ResponseHandlerController;
  *
 */
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
-    Route::apiResource('responsehandler', ResponseHandlerController::class)->names('responsehandler');
-});
+//Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
+//    Route::apiResource('responsehandler', ResponseHandlerController::class)->names('responsehandler');
+//});

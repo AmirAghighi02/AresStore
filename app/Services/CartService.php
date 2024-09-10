@@ -20,7 +20,7 @@ class CartService
             Cache::put($this->cartCacheKey, $cart = [], 3600);
         }
 
-        return $cart;
+        return $cart ?? [];
     }
 
     public function addToCart(int $productId, int $quantity): void
@@ -35,11 +35,14 @@ class CartService
     public function removeFromCart(int $productId, int $quantity): bool
     {
         $productCount = $this->getProductCount($productId);
-        if ($productCount < $quantity) {
-            return false;
-        }
         $productCount -= $quantity;
+
+        if ($productCount < 0) {
+            $productCount = 0;
+        }
+
         $cart = $this->getCart();
+        $cart[$productId] = $productCount;
 
         if ($productCount === 0) {
             unset($cart[$productId]);
