@@ -29,4 +29,14 @@ class WalletPolicy
     {
         return $user->hasPermissionTo(Permissions::WALLET_VIEW);
     }
+
+    public function chargeSelf(User $user): bool
+    {
+        return $user->hasPermissionTo(Permissions::WALLET_SELF_CHARGE);
+    }
+
+    public function withdrawSelf(User $user): bool
+    {
+        return $user->hasPermissionTo(Permissions::WALLET_SELF_WITHDRAW);
+    }
 }

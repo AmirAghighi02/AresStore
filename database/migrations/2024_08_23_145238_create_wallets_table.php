@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\WalletStatus;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('balance')->default(0);
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDekete();
+            $table->tinyInteger('status')->default(WalletStatus::ACTIVE->value);
             $table->timestamps();
         });
     }
