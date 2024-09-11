@@ -12,7 +12,7 @@ Route::prefix('seller/product')
             ->can('viewAnySelf', Product::class)
             ->name('seller.product.index');
 
-        Route::get('/show/{product}', 'show')
+        Route::get('/{product}', 'show')
             ->can('view', 'product')
             ->name('seller.product.show');
 
@@ -23,4 +23,8 @@ Route::prefix('seller/product')
         Route::post('/update/{product}', 'update')
             ->can('update', 'product')
             ->name('seller.product.update');
+
+        Route::delete('/{product}', 'delete')
+            ->can('delete', 'product')
+            ->name('seller.product.delete');
     });
