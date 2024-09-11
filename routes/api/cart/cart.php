@@ -8,13 +8,16 @@ Route::controller(CartController::class)
     ->middleware('auth:sanctum')
     ->prefix('cart')
     ->group(function () {
-        Route::post('/add', 'store')
+        Route::post('/add-item', 'storeItem')
             ->permission(Permissions::CART_ADD_ITEM_SELF->value)
-            ->name('cart.store');
-        Route::delete('/remove', 'destroy')
+            ->name('cart.item.store');
+        Route::delete('/remove-item', 'destroyItem')
             ->permission(Permissions::CART_DELETE_ITEM_SELF->value)
-            ->name('cart.destroy');
+            ->name('cart.item.destroy');
         Route::post('/pay', 'pay')
             ->permission(Permissions::CART_PAY_SELF->value)
             ->name('cart.pay');
+        Route::delete('/', 'destroy')
+            ->permission(Permissions::CART_DELETE_ITEM_SELF->value)
+            ->name('cart.destroy');
     });

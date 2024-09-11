@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CartController extends Controller
 {
-    public function store(AddOrDeleteItemCartRequest $request)
+    public function storeItem(AddOrDeleteItemCartRequest $request)
     {
         $validated = $request->validated();
         $cartService = new CartService(Auth::id());
@@ -22,12 +22,12 @@ class CartController extends Controller
         return ResponseConverter::convert(
             ResponseUtil::builder()
                 ->setAction(__FUNCTION__)
-                ->setMessage('cart.store.successful')
+                ->setMessage('cart.store_item.successful')
                 ->setData($cartService->getCart())
         );
     }
 
-    public function destroy(AddOrDeleteItemCartRequest $request)
+    public function destroyItem(AddOrDeleteItemCartRequest $request)
     {
         $validated = $request->validated();
         $cartService = new CartService(Auth::id());
@@ -36,7 +36,7 @@ class CartController extends Controller
         return ResponseConverter::convert(
             ResponseUtil::builder()
                 ->setAction(__FUNCTION__)
-                ->setMessage('cart.store.successful')
+                ->setMessage('cart.destroy_item.successful')
                 ->setData($cartService->getCart())
         );
     }
@@ -55,6 +55,17 @@ class CartController extends Controller
                     'total_price' => $payment->price,
                 ])
                 ->setStatusCode(Response::HTTP_CREATED)
+        );
+    }
+
+    public function destroy()
+    {
+        (new CartService(Auth::id()))->deleteCart();
+
+        return ResponseConverter::convert(
+            ResponseUtil::builder()
+                ->setAction(__FUNCTION__)
+                ->setMessage('cart.destroy.successful')
         );
     }
 }
