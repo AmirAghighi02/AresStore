@@ -68,8 +68,10 @@ class WalletController extends Controller
         );
     }
 
-    public function show(Wallet $wallet)
+    public function show(?Wallet $wallet)
     {
+        $wallet = $wallet ?? Auth::user()->wallet()->firstOrCreate();
+
         return ResponseConverter::convert(
             ResponseUtil::builder()
                 ->setAction(__FUNCTION__)

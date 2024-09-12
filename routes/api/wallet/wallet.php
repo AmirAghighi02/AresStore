@@ -15,7 +15,7 @@ Route::controller(WalletController::class)
         Route::get('/balance', 'balance')
             ->name('wallet.balance');
 
-        Route::get('/{wallet}', 'show')
+        Route::get('/show/{?wallet}', 'show')
             ->can('view', 'wallet')
             ->name('wallet.show');
 

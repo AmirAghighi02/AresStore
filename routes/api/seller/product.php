@@ -8,7 +8,7 @@ Route::prefix('seller/product')
     ->middleware(['auth:sanctum'])
     ->controller(ProductController::class)
     ->group(static function () {
-        Route::get('/index', 'index')
+        Route::get('/', 'index')
             ->can('viewAnySelf', Product::class)
             ->name('seller.product.index');
 
@@ -16,7 +16,7 @@ Route::prefix('seller/product')
             ->can('view', 'product')
             ->name('seller.product.show');
 
-        Route::post('/store', 'store')
+        Route::post('/', 'store')
             ->can('store', Product::class)
             ->name('seller.product.store');
 
